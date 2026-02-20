@@ -1,4 +1,5 @@
 import { TemplateCard } from './template-card';
+import { calculateTimeRange } from '../utils/time-calculator';
 
 export function LayananSheriff() {
   const templates = [
@@ -30,6 +31,24 @@ export function LayananSheriff() {
       ],
       generateText: (values: Record<string, string>) => 
         `/POLICER SHERIFF KERAJAAN ROXWOOD MELAKUKAN PEMANGGILAN TERHADAP ORGANISASI MASYARAKAT BERNAMA ${values.organisasi || '...'} ATAS DASAR KASUS ${values.kasus || '...'} . APABILA PANGGILAN INI TIDAK DIPENUHI DALAM WAKTU ${values.waktu || '...'} MAKA PIHAK SHERIFF AKAN MELAKUKAN PENJEMPUTAN PAKSA TERHADAP MASYARAKAT YANG MENGGUNAKAN ATRIBUT ${values.atribut || '...'} . TERIMA KASIH!!!`
+    },
+    {
+      title: 'Pemanggilan Individu',
+      inputs: [
+        { label: 'Nama Lengkap', key: 'nama', placeholder: 'contoh: HAIKAL BURJO' },
+        { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 30', type: 'number' as const }
+      ],
+      generateText: (values: Record<string, string>) => 
+        `/policer SHERIFF MELAKUKAN PEMANGGILAN ATAS NAMA ${values.nama || '...'} UNTUK DATANG KE FEDERAL SHERIFF DALAM KURUN WAKTU ${values.waktu || '...'} MENIT KEDEPAN (${calculateTimeRange(values.waktu)}) UNTUK DIMINTAI KETERANGAN.`
+    },
+    {
+      title: 'Sterilisasi Distrik',
+      inputs: [
+        { label: 'Distrik', key: 'distrik', placeholder: 'contoh: PERUMAHAN' },
+        { label: 'Koordinat', key: 'koordinat', placeholder: 'contoh: 606 - 608' }
+      ],
+      generateText: (values: Record<string, string>) => 
+        `/POLICER SHERIFF MELAKUKA STERILISASI DI DISTRIK ${values.distrik || '...'} KOORDINAT (${values.koordinat || '...'}) WARGA HARAP MENJAUHI AREA TERSEBUT HINGGA PENGUMUMAN LEBIH LANJUT. TERIMA KASIH!!`
     }
   ];
 
