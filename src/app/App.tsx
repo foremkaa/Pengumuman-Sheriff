@@ -82,6 +82,18 @@ export default function App() {
           {activeTab === 'codezero' && <CodeZero />}
           {activeTab === 'penyandraan' && <Penyandraan />}
         </div>
+
+        {/* Footer / Credit */}
+        <div className="mt-12 mb-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <p className="text-slate-500 text-sm mb-1">
+              © 2026 PENGUMUMAN SHERIFF. All rights reserved.
+            </p>
+            <p className="text-slate-500 text-sm">
+              Dibuat oleh <span className="text-yellow-400 font-semibold">MAUL KHALIF</span> — Untuk bantuan atau pembaruan, silahkan hubungi pembuat
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
