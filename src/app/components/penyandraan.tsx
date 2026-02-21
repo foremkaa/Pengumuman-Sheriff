@@ -35,7 +35,7 @@ export function Penyandraan() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER PENYANDRAAN MEMASUKI TAHAP EVAKUASI DALAM ${calculateTimeRange(values.waktu)}, WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
+        `/POLICER PENYANDRAAN MEMASUKI TAHAP EVAKUASI DALAM ${calculateTimeRange(values.waktu)}, WARGA SILAHKAN MENJAUH DARI LOKASI PENYANDRAAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
     },
     {
       title: 'Penyandraan - Clear',
