@@ -39,7 +39,7 @@ export function LayananSheriff() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 30', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/policer SHERIFF MELAKUKAN PEMANGGILAN ATAS NAMA ${values.nama || '...'} UNTUK DATANG KE FEDERAL SHERIFF DALAM KURUN WAKTU ${values.waktu || '...'} MENIT KEDEPAN (${calculateTimeRange(values.waktu)}) UNTUK DIMINTAI KETERANGAN.`
+        `/policer SHERIFF MELAKUKAN PEMANGGILAN ATAS NAMA ${values.nama || '...'} UNTUK DATANG KE FEDERAL SHERIFF DALAM KURUN WAKTU ${calculateTimeRange(values.waktu)} KEDEPAN UNTUK DIMINTAI KETERANGAN.`
     },
     {
       title: 'Sterilisasi Distrik',

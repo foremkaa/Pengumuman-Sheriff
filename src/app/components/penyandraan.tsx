@@ -11,7 +11,7 @@ export function Penyandraan() {
         { label: 'Koordinat', key: 'koordinat', placeholder: 'contoh: X: 123, Y: 456' }
       ],
       generateText: (values: Record<string, string>) => 
-        `/policer TELAH TERJADI PENYANDRAAN OLEH ATRUBUT ${values.atribut || '...'} DI AREA ${values.area || '...'} (${values.koordinat || 'koordinat'}), WARGA DI HARAP MENJAUH DARI AREA LOKASI TERSEBUT !`
+        `/policer TELAH TERJADI PENYANDRAAN OLEH ATRUBUT ${values.atribut || '...'} DI AREA ${values.area || '...'} ${values.koordinat || ''}, WARGA DI HARAP MENJAUH DARI AREA LOKASI TERSEBUT !`
     },
     {
       title: 'Penyandraan - Berubah Jadi Penembakan',
@@ -27,7 +27,7 @@ export function Penyandraan() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER JIKA TIDAK ADA TEMBAKAN DALAM WAKTU ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}), MAKA AKAN KAMI NYATAKAN CLEAR, TERIMA KASIH`
+        `/POLICER JIKA TIDAK ADA TEMBAKAN DALAM WAKTU ${calculateTimeRange(values.waktu)}, MAKA AKAN KAMI NYATAKAN CLEAR, TERIMA KASIH`
     },
     {
       title: 'Penyandraan - Tahap Evakuasi',
@@ -35,7 +35,7 @@ export function Penyandraan() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER PENYANDRAAN MEMASUKI TAHAP EVAKUASI DALAM ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}), WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
+        `/POLICER PENYANDRAAN MEMASUKI TAHAP EVAKUASI DALAM ${calculateTimeRange(values.waktu)}, WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
     },
     {
       title: 'Penyandraan - Clear',

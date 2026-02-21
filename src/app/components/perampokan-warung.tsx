@@ -1,5 +1,5 @@
 import { TemplateCard } from './template-card';
-import { calculateTimeRange } from '../utils/time-calculator';
+import { calculateTimeRange, numberToOrdinal } from '../utils/time-calculator';
 
 export function PerampokanWarung() {
   const templates = [
@@ -18,7 +18,7 @@ export function PerampokanWarung() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER PERAMPOKAN WARUNG ${values.warung || '...'} MEMASUKI TAHAP EVAKUASI DALAM ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}), WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
+        `/POLICER PERAMPOKAN WARUNG ${values.warung || '...'} MEMASUKI TAHAP EVAKUASI DALAM ${calculateTimeRange(values.waktu)}, WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
     },
     {
       title: 'Perampokan Clear',
@@ -26,7 +26,7 @@ export function PerampokanWarung() {
         { label: 'Nama Warung', key: 'warung', placeholder: 'contoh: WARUNG 24/7' }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER PERAMPOKAN WARUNG ${values.warung || '...'} DINYATAKAN CLEAR WARGA BISA MELANJUTKAN AKTIFITAS, TERIMA KASIH`
+        `/POLICER PERAMPOKAN WARUNG ${values.warung || '...'} DINYATAKAN CLEAR WARGA BISA MELANJUTKAN AKTIFITASNYA, TERIMA KASIH`
     },
     {
       title: 'Rampok Tarik (Pindah Lokasi)',
@@ -42,13 +42,15 @@ export function PerampokanWarung() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER JIKA TIDAK ADA TEMBAKAN DALAM WAKTU ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}), MAKA AKAN KAMI NYATAKAN CLEAR, TERIMA KASIH`
+        `/POLICER JIKA TIDAK ADA TEMBAKAN DALAM WAKTU ${calculateTimeRange(values.waktu)}, MAKA AKAN KAMI NYATAKAN CLEAR, TERIMA KASIH`
     },
     {
       title: 'Rampok Pursuit (Pengejaran)',
-      inputs: [],
-      generateText: () => 
-        `/POLICER STATUS PERAMPOKAN WARUNG BERUBAH MENJADI PENGEJERAN. APABILA WARGA MENDENGAR SUARA SIRINE, HARAP TIDAK MENDEKAT DAN TETAP BERHATI-HATI KARENA KAMI TIDAK BERTANGGUNG JAWAB APABILA ADA TABRAKAN YANG TERJADI!!`
+      inputs: [
+        { label: 'Nama Warung', key: 'warung', placeholder: 'contoh: WARUNG 24/7' }
+      ],
+      generateText: (values: Record<string, string>) => 
+        `/POLICER STATUS PERAMPOKAN WARUNG ${values.warung || '...'} BERUBAH MENJADI PENGEJERAN. APABILA WARGA MENDENGAR SUARA SIRINE, HARAP TIDAK MENDEKAT DAN TETAP BERHATI-HATI KARENA KAMI TIDAK BERTANGGUNG JAWAB APABILA ADA TABRAKAN YANG TERJADI!!`
     },
     {
       title: 'Peringatan Pengejaran',
@@ -56,7 +58,7 @@ export function PerampokanWarung() {
         { label: 'Peringatan Ke-', key: 'peringatan', placeholder: 'contoh: 1', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER INFO STATUS PENGEJARAN SUSPECT PERAMPOKAN SUDAH MEMASUKI PERINGATAN ${values.peringatan || '...'}`
+        `/POLICER INFO STATUS PENGEJARAN SUSPECT PERAMPOKAN SUDAH MEMASUKI PERINGATAN ${numberToOrdinal(values.peringatan || '...')}`
     },
     {
       title: 'Status Pencarian',
@@ -65,7 +67,7 @@ export function PerampokanWarung() {
         { label: 'Ciri-ciri Kendaraan', key: 'ciri', placeholder: 'contoh: MOBIL SEDAN HITAM PLAT B 1234 AB' }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER STATUS PENGEJARAN SUSPECT PERAMPOKAN BERUBAH MENJADI STATUS PENCARIAN SELAMA ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}) TERHADAP KENDARAAN DENGAN CIRI CIRI ${values.ciri || '...'} , WARGA HARAP TETAP BERHATI-HATI. TERIMAKASIH.`
+        `/POLICER STATUS PENGEJARAN SUSPECT PERAMPOKAN BERUBAH MENJADI STATUS PENCARIAN SELAMA ${calculateTimeRange(values.waktu)} TERHADAP KENDARAAN DENGAN CIRI CIRI ${values.ciri || '...'} , WARGA HARAP TETAP BERHATI-HATI. TERIMAKASIH.`
     },
     {
       title: 'Perampokan Tidak Tertangani',

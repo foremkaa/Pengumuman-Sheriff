@@ -10,7 +10,7 @@ export function KerusuhanPenembakan() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 3', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER TELAH TERJADI KERUSUHAN DI WILAYAH ${values.wilayah || '...'}, HARAP SEGERA MEMBUBARKAN DIRI DALAM WAKTU ${values.waktu || '...'} (${calculateTimeRange(values.waktu)}) DAN WARGA HARAP MENJAUH ATAU AKAN KAMI TINDAK TEGAS. TERIMA KASIH`
+        `/POLICER TELAH TERJADI KERUSUHAN DI WILAYAH ${values.wilayah || '...'}, HARAP SEGERA MEMBUBARKAN DIRI DALAM WAKTU ${calculateTimeRange(values.waktu)} DAN WARGA HARAP MENJAUH ATAU AKAN KAMI TINDAK TEGAS. TERIMA KASIH`
     },
     {
       title: 'Pengumuman Penembakan/Penusukan',
@@ -29,7 +29,7 @@ export function KerusuhanPenembakan() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER STATUS ${values.jenis || 'PENEMBAKAN/PENUSUKAN'} WILAYAH ${values.wilayah || '...'} MEMASUKI TAHAP EVAKUASI DALAM ${values.waktu || '...'} MENIT, WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
+        `/POLICER STATUS ${values.jenis || 'PENEMBAKAN/PENUSUKAN'} WILAYAH ${values.wilayah || '...'} MEMASUKI TAHAP EVAKUASI DALAM ${calculateTimeRange(values.waktu)}, WARGA SILAHKAN MENJAUH DARI LOKASI PERAMPOKAN ATAU KAMI TINDAK TEGAS TERIMA KASIH`
     },
     {
       title: 'Clear Penembakan/Penusukan',
@@ -56,7 +56,7 @@ export function KerusuhanPenembakan() {
         { label: 'Ciri-ciri Kendaraan', key: 'ciri', placeholder: 'contoh: MOTOR SPORT MERAH PLAT B 5678 CD' }
       ],
       generateText: (values: Record<string, string>) => 
-        `/POLICER STATUS PENGEJARAN SUSPECT ${values.jenis || 'PENEMBAKAN/PENUSUKAN'} BERUBAH MENJADI STATUS PENCARIAN SELAMA ${values.waktu || '...'} MENIT (${calculateTimeRange(values.waktu)}) TERHADAP KENDARAAN DENGAN CIRI CIRI ${values.ciri || '...'} , WARGA HARAP TETAP BERHATI-HATI. TERIMA KASIH.`
+        `/POLICER STATUS PENGEJARAN SUSPECT ${values.jenis || 'PENEMBAKAN/PENUSUKAN'} BERUBAH MENJADI STATUS PENCARIAN SELAMA ${calculateTimeRange(values.waktu)} TERHADAP KENDARAAN DENGAN CIRI CIRI ${values.ciri || '...'} , WARGA HARAP TETAP BERHATI-HATI. TERIMA KASIH.`
     },
     {
       title: 'Clear Pengejaran Suspect',
@@ -65,6 +65,14 @@ export function KerusuhanPenembakan() {
       ],
       generateText: (values: Record<string, string>) => 
         `/POLICER PENGEJARAN SUSPECT ${values.jenis || 'PENUSUKAN/PENEMBAKAN'} DINYATAKAN CLEAR WARGA BISA MELANJUTKAN AKTIFITASNYA, TERIMA KASIH`
+    },
+    {
+      title: 'Penindakan Kelompok Beratribut',
+      inputs: [
+        { label: 'Atribut Kelompok', key: 'atribut', placeholder: 'contoh: JAKET MERAH BERTULISKAN XYZ' }
+      ],
+      generateText: (values: Record<string, string>) => 
+        `/POLICER SHERIFF MENINDAK TEGAS KELOMPOK BERATRIBUT ${values.atribut || '...'}`
     }
   ];
 

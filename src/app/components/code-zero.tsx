@@ -11,7 +11,7 @@ export function CodeZero() {
         { label: 'Atribut', key: 'atribut', placeholder: 'contoh: JAKET MERAH' }
       ],
       generateText: (values: Record<string, string>) => 
-        `/policer TELAH TERJADI ${values.jenis || 'PENUSUKAN/PENEMBAKAN'} TERHADAP ANGGOTA SHERIFF DI LOKASI ${values.lokasi || '...'}  SHERIFF MENINDAK TEGAS ATRIBUT ${values.atribut || '...'}`
+        `/policer TELAH TERJADI ${values.jenis || 'PENUSUKAN/PENEMBAKAN'} TERHADAP ANGGOTA SHERIFF DI LOKASI ${values.lokasi || '...'}, SHERIFF MENINDAK TEGAS ATRIBUT ${values.atribut || '...'}`
     },
     {
       title: 'Code 0 - Tahap Evakuasi',
@@ -29,7 +29,7 @@ export function CodeZero() {
         { label: 'Waktu (menit)', key: 'waktu', placeholder: 'contoh: 5', type: 'number' as const }
       ],
       generateText: (values: Record<string, string>) => 
-        `/policer SHERIFF TARIK MUNDUR ATAS PENINDAKAN ATRIBUT ${values.atribut || '...'} DAN AKAN MEMASUKI TAHAP EVAKUASI DALAM WAKTU ${values.waktu || '...'} (${calculateTimeRange(values.waktu)})`
+        `/policer SHERIFF TARIK MUNDUR ATAS PENINDAKAN ATRIBUT ${values.atribut || '...'} DAN AKAN MEMASUKI TAHAP EVAKUASI DALAM WAKTU ${calculateTimeRange(values.waktu)}`
     },
     {
       title: 'Code 0 - Clear',

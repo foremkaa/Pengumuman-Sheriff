@@ -14,5 +14,28 @@ export function calculateTimeRange(minutes: string): string {
     return `${hours}:${mins}`;
   };
   
-  return `${formatTime(now)} - ${formatTime(endTime)}`;
+  return `${menit} MENIT (${formatTime(now)} - ${formatTime(endTime)})`;
+}
+
+// Fungsi untuk mengkonversi angka ke kata ordinal
+export function numberToOrdinal(num: string): string {
+  if (!num || num === '') return '...';
+  
+  const number = parseInt(num);
+  if (isNaN(number)) return '...';
+  
+  const ordinals: { [key: number]: string } = {
+    1: 'PERTAMA',
+    2: 'KEDUA',
+    3: 'KETIGA',
+    4: 'KEEMPAT',
+    5: 'KELIMA',
+    6: 'KEENAM',
+    7: 'KETUJUH',
+    8: 'KEDELAPAN',
+    9: 'KESEMBILAN',
+    10: 'KESEPULUH'
+  };
+  
+  return ordinals[number] || num;
 }
